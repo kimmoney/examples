@@ -7,7 +7,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
-
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -139,7 +138,8 @@ def main():
 
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")
-
+def print_error(a):
+    print("error =" ,a)
 
 if __name__ == '__main__':
     main()
