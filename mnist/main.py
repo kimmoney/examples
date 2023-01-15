@@ -7,6 +7,7 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.optim.lr_scheduler import StepLR
 
+
 class Net(nn.Module):
     def __init__(self):
         super(Net, self).__init__()
@@ -17,7 +18,7 @@ class Net(nn.Module):
         self.fc1 = nn.Linear(9216, 128)
         self.fc2 = nn.Linear(128, 10)
 
-    def forward(self, x): #foward function
+    def forward(self, x):
         x = self.conv1(x)
         x = F.relu(x)
         x = self.conv2(x)
@@ -62,7 +63,7 @@ def test(model, device, test_loader):
             pred = output.argmax(dim=1, keepdim=True)  # get the index of the max log-probability
             correct += pred.eq(target.view_as(pred)).sum().item()
 
-    test_loss /= len(test_loader.dataset) #calculate test_loss
+    test_loss /= len(test_loader.dataset)
 
     print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
         test_loss, correct, len(test_loader.dataset),
@@ -138,8 +139,7 @@ def main():
 
     if args.save_model:
         torch.save(model.state_dict(), "mnist_cnn.pt")
-def print_error(a):
-    print("error =" ,a)
+
 
 if __name__ == '__main__':
     main()
